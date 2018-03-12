@@ -1,0 +1,56 @@
+
+<div>
+    <div fxFlex="70">
+                
+        <div fxLayout="column" fxLayoutGap="20px" *ngIf="!!article">
+
+            <div fxFlex="100">
+                <a [routerLink]="['/posts']" >< Posts</a>
+            </div>
+            <div fxFlex="100">
+                <h1 >{{article.title}}</h1>
+            </div>
+            <div fxFlex="100" style="text-align: center"  >
+                <img [defaultImage]="'assets/loading.gif'" [lazyLoad]="'https://robohash.org/'+article.id" >
+            </div>
+            
+            <div fxFlex="100">{{article.body}}</div>
+
+            <h2 fxFlex="100">Comments</h2>
+
+            <div fxFlex="100">
+ 
+                
+                <app-comments [comments]="comments"></app-comments>
+            </div>
+        </div>      
+    </div>        
+    <div fxFlexAlign="left"  fxFlex="30" >
+        <div fxLayout="column" fxLayoutGap="20px">
+            <mat-grid-list cols="3" rowHeight="2:1">
+                <mat-grid-tile>1</mat-grid-tile>
+                <mat-grid-tile>2</mat-grid-tile>
+                <mat-grid-tile>3</mat-grid-tile>
+                <mat-grid-tile>4</mat-grid-tile>
+                <mat-grid-tile>5</mat-grid-tile>
+                <mat-grid-tile>6</mat-grid-tile>
+            </mat-grid-list>
+            <mat-tab-group>
+                <mat-tab label="Tab 1">
+                    <div class="demo-tab-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                        In sodales pretium ultrices. 
+                    </div>
+                </mat-tab>
+                <mat-tab label="Tab 2">
+                    <div class="demo-tab-content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                            Phasellus volutpat neque ac dui mattis vulputate. 
+                    </div>  
+                </mat-tab>
+                <mat-tab label="Tab 3">Lorem ipsum dolor sit amet</mat-tab>
+            </mat-tab-group>
+        </div>  
+    </div>
+</div>

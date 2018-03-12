@@ -1,0 +1,18 @@
+
+
+ 
+
+::ng-deep .mat-tab-labels {
+    display: table !important;
+    width: 100%;
+    table-layout: fixed;
+
+    .mat-tab-label {
+        display: table-cell;
+        vertical-align: middle;
+        min-width: auto !important;
+    }
+}
+mat-grid-tile {
+    background: lightblue;
+}
