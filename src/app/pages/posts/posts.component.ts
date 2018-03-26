@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from './posts.service';
-
+import { MetaService } from '../../shared/meta-service.service';
 import { pull, map, find, each } from 'lodash';
 import {PageEvent} from '@angular/material';
+
 
 @Component({
   selector: 'app-posts',
@@ -10,6 +11,10 @@ import {PageEvent} from '@angular/material';
   styleUrls: ['./posts.component.css']
 })
 
+const metaTags = {
+  title: 'Latest Articles',
+  description: 'latest articles here'
+};
 
 export class PostsComponent implements OnInit {
   postsList;
@@ -18,19 +23,23 @@ export class PostsComponent implements OnInit {
   // MatPaginator Inputs
   length: number;
   pageSize: number;
-  pageSizeOptions: Array<number> = [3, 5, 10, 25];
+  pageSizeOptions: Array<number> = [25, 45, 75, 100];
 
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService,
+              private metaService: MetaService) { }
 
   ngOnInit() {
-    this.pageSize = 5;
+    this.pageSize = 25;
     this.postsService.postsList.subscribe(postsList => {
 
       this.postsList = postsList;
       this.length = this.postsList.length;
-      console.log(this.length);
+
       this.updatePostsListDisplay();
     });
+
+    this.metaService.setTitle(metaTags.title);
+    this.metaService.setDescription(metaTags.description);
   }
 
   searchEvent($searchArray): void {

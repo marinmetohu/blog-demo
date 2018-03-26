@@ -1,0 +1,19 @@
+<mat-card  class="article" fxLayout="column">
+  <mat-card-header fxFlex="100" >
+      <mat-card-title class="article--title">
+        
+        <div *ngIf="isLink; then linked else header"></div>
+        <ng-template #linked><a [routerLink]="['/article', article.id]">{{article.title}}</a></ng-template>
+        <ng-template #header>{{article.title}}</ng-template>
+
+      </mat-card-title>
+      <mat-card-subtitle class="article--subtitle">{{article.subtitle}}</mat-card-subtitle >
+  </mat-card-header>
+  <mat-card-content>
+      <mark>{{article.body}}</mark>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

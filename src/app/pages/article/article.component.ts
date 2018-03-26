@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ArticleService } from './article.service';
 import {Router} from '@angular/router';
-
+import { Title, Meta } from '@angular/platform-browser';
 import { assign, cloneDeep, find } from 'lodash';
+
+import { MetaService } from '../../shared/meta-service.service';
 
 import { Post } from '../../interfaces';
 
@@ -19,7 +21,10 @@ export class ArticleComponent implements OnInit {
   comments: any;
 
   constructor(private route: ActivatedRoute,
-              private articleService: ArticleService
+              private articleService: ArticleService,
+              private titleService: Title,
+              private meta: Meta,
+              private metaService: MetaService
             ) { }
 
   getComments(id) {
@@ -29,16 +34,12 @@ export class ArticleComponent implements OnInit {
   getArticle(id) {
     this.articleService.getArticle(id).subscribe(article => {
 
-      /**
-       * get the article by id
-       */
       this.article =  article;
-      /**
-       * load comments after loading the article
-       */
-      this.getComments(id);
+      this.metaService.setTitle( this.article.title );
+      this.metaService.setDescription(this.article.body);
     });
   }
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.getArticle(params.get('id') );

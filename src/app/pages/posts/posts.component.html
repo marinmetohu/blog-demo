@@ -10,23 +10,10 @@
   <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 20px;"  >
 
       <div  *ngFor='let post of postsListDisplay' >
-        <mat-card *ngIf="!!post.display">
-          <mat-card-header fxFlex="100" >
-              <div mat-card-avatar class="example-header-image"  >
-                  <img [defaultImage]="'assets/loading.gif'" [lazyLoad]="'https://robohash.org/'+post.id" >
-              </div>
-              <mat-card-title>
-                <a [routerLink]="['/article', post.id]">{{post.title}}</a>
-              </mat-card-title>
-              <mat-card-subtitle ><span>{{post.body}}</span></mat-card-subtitle >
-          </mat-card-header>
-        </mat-card>
+        <app-card *ngIf="!!post.display" [article]="post" [isLink]="true"></app-card>
       </div>
 
       <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 20px;"  >
-        <mat-form-field fxFlex="">
-            <input matInput [(ngModel)]="pageSize" (keyup)="updatePostsListDisplay()">
-        </mat-form-field>  
         <mat-paginator [length]="postsList.length"
             [pageSize]="pageSize"
             [pageSizeOptions]="pageSizeOptions"

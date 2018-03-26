@@ -1,0 +1,16 @@
+
+.article{
+    mark {
+        background: gray;
+    }
+    &--title{
+        font-size: 14px; 
+    }
+    &--subtitle{
+        font-size: 12px; 
+    }
+    &--body{
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

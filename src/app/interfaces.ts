@@ -1,6 +1,3 @@
-export interface Interfaces {
-}
-
 
 export interface Post {
     readonly id: string;
